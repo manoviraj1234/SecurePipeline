@@ -40,6 +40,15 @@ def evaluate_expression():
         value = json.loads(expression)
     except (ValueError, RecursionError):
         return jsonify(error="Invalid JSON value"), 400
+    pending = [(value, 0)]
+    while pending:
+        item, depth = pending.pop()
+        if depth > 32:
+            return jsonify(error="JSON nesting too deep"), 400
+        if isinstance(item, dict):
+            pending.extend((child, depth + 1) for child in item.values())
+        elif isinstance(item, list):
+            pending.extend((child, depth + 1) for child in item)
     return jsonify(result=value)
 
 
