@@ -7,8 +7,8 @@ echo.
 
 cd /d "%~dp0"
 
-copy /y sample_app\app_vulnerable.py sample_app\app.py
-copy /y sample_app\requirements_vulnerable.txt sample_app\requirements.txt
+copy /y tests\fixtures\vulnerable\app.py sample_app\app.py
+copy /y tests\fixtures\vulnerable\requirements.txt sample_app\requirements.txt
 
 git add sample_app\app.py sample_app\requirements.txt
 git commit -m "test: introduce intentional vulnerabilities to verify security gate BLOCK"
@@ -22,4 +22,5 @@ echo   The Security Gate will now evaluate as:
 echo   [BLOCK] DEPLOYMENT BLOCKED (Red)
 echo ========================================================
 pause
+
 

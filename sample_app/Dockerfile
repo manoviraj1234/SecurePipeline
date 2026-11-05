@@ -1,23 +1,16 @@
-# Sample Dockerfile for testing container image vulnerability scanning
-# Uses python:3.12-slim for a more current base image with fewer OS-level CVEs.
-# Intentionally vulnerable Python dependencies are preserved in requirements.txt
-# so that Trivy dependency scanning still demonstrates vulnerability detection.
-FROM python:3.12-slim
+FROM python:3.12-alpine
 
 WORKDIR /app
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
-# Patch OS-level packages to fix CRITICAL CVEs (OpenSSL, perl-base)
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk upgrade --no-cache && \
+    addgroup -S app && adduser -S -G app app
 
-# Copy dependency definition and install
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN python -m pip install --no-cache-dir -r requirements.txt
 
-# Copy application source
-COPY app.py .
-
+COPY --chown=app:app app.py .
+USER app
 EXPOSE 5000
-
-CMD ["python", "app.py"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "--timeout", "30", "app:app"]

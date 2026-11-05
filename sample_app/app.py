@@ -1,50 +1,48 @@
-"""
-Sample Vulnerable Test Application for SecurePipeline Validation.
-Includes intentional patterns for testing SAST, secret detection, and dependencies.
-"""
+"""Hardened demo service: fixed operations and JSON parsing only."""
 
-import os
-import subprocess
-from flask import Flask, request, jsonify
+import json
+import platform
+from datetime import datetime, timezone
+
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
-
-# Intentional secret test pattern for Gitleaks detection
-# Standard dummy token pattern for validation purposes
-DEMO_API_KEY = "AKIAIOSFODNN7EXAMPLE"  # Standard AWS test key format
+app.config["MAX_CONTENT_LENGTH"] = 16 * 1024
 
 
-@app.route("/")
+@app.get("/")
 def home():
-    return jsonify({"status": "running", "service": "sample-vulnerable-app"})
+    return jsonify(status="running", service="securepipeline-demo")
 
 
-@app.route("/execute")
+@app.get("/execute")
 def execute_command():
-    """Intentional SAST test pattern for Semgrep (Command Injection / shell=True)."""
-    user_cmd = request.args.get("cmd", "echo hello")
-    # Insecure use of shell=True with user-provided input
-    result = subprocess.check_output(user_cmd, shell=True, text=True)
-    return jsonify({"output": result})
+    """Return an allowlisted diagnostic without starting system processes."""
+    operation = request.args.get("cmd", "version")
+    if operation == "version":
+        output = platform.python_version()
+    elif operation == "status":
+        output = "running"
+    elif operation == "date":
+        output = datetime.now(timezone.utc).isoformat()
+    else:
+        return jsonify(error="Unauthorized command"), 400
+    return jsonify(output=output)
 
 
-@app.route("/eval")
+@app.get("/eval")
 def evaluate_expression():
-    """Intentional SAST test pattern for Semgrep (eval)."""
-    expr = request.args.get("expr", "1 + 1")
-    # Insecure use of eval
-    val = eval(expr)
-    return jsonify({"result": val})
+    """Parse JSON values; expressions and Python code are not accepted."""
+    expression = request.args.get("expr", "123")
+    if len(expression) > 4096:
+        return jsonify(error="Input too large"), 400
+    try:
+        value = json.loads(expression)
+    except (ValueError, RecursionError):
+        return jsonify(error="Invalid JSON value"), 400
+    return jsonify(result=value)
 
 
-@app.route("/ping")
+@app.get("/ping")
 def ping_service():
-    """CI/CD validation test endpoint for live pipeline trigger."""
-    target = request.args.get("host", "127.0.0.1")
-    return jsonify({"service": "securepipeline-test", "target": target})
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-
-# Test pipeline run: 11/04/2026 11:39:23
+    return jsonify(service="securepipeline-test", target=request.args.get("host", "127.0.0.1"))
