@@ -1,5 +1,22 @@
 # SecurePipeline: Automated CI/CD Vulnerability Detection System
 
+## Current demonstration state
+
+The deployable `sample_app/` is now hardened: diagnostics do not invoke a shell,
+the value endpoint parses bounded JSON, dependencies are updated, and the Alpine
+container runs Gunicorn as a non-root user. Intentionally vulnerable examples
+live under `tests/fixtures/vulnerable/`, outside the deployed application.
+The existing HIGH/CRITICAL gate remains enforced for the complete deployable
+source directory and its built container image.
+
+Use `push_vulnerable_block.bat` to copy the vulnerable fixture into the actual
+application and demonstrate BLOCK. Use `push_clean_pass.bat` to restore the
+hardened fixture and rescan. A PASS is determined by scanner results, not
+guaranteed by either script. Original vulnerable results remain in GitHub run
+42038440182. The first hardened run, 42039358300, completed successfully.
+
+See `REMEDIATION.md` for the before/after evidence and verification details.
+
 **SecurePipeline** is an enterprise-grade DevSecOps platform that injects automated security testing directly into Continuous Integration and Continuous Deployment (CI/CD) pipelines. It shifts security left by automatically scanning source code, hardcoded secrets, dependencies, and container images on every code commit, enforcing a fail-closed security gate that prevents vulnerable applications from reaching production.
 
 ---
