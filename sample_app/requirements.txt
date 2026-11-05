@@ -1,0 +1,6 @@
+# Sample application dependencies with intentional versions for CVE testing
+Flask==1.1.2
+Werkzeug==1.0.1
+requests==2.25.0
+urllib3==1.26.4
+Jinja2==2.11.3

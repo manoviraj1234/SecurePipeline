@@ -1,0 +1,138 @@
+{
+  "report_id": "sec-rep-20261103120742",
+  "generated_at": "2026-11-03T12:07:42.811273+00:00",
+  "metadata": {
+    "target_directory": "C:\\Users\\venna\\.gemini\\antigravity\\scratch\\securepipeline\\sample_app",
+    "start_time": "2026-11-03T12:07:20.699866+00:00",
+    "end_time": "2026-11-03T12:07:21.214471+00:00",
+    "docker_image": "sample-test-image:latest"
+  },
+  "security_gate": {
+    "decision": "INCOMPLETE",
+    "timestamp": "2026-11-03T12:07:42.311097+00:00",
+    "blocking_severities": [
+      "CRITICAL",
+      "HIGH"
+    ],
+    "total_findings": 0,
+    "severity_counts": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "INFO": 0
+    },
+    "scanner_statuses": {
+      "semgrep": {
+        "status": "not_installed",
+        "returncode": null,
+        "raw_output_path": null,
+        "error_message": "Semgrep is not installed or not found in PATH.",
+        "findings_count": 0
+      },
+      "gitleaks": {
+        "status": "not_installed",
+        "returncode": null,
+        "raw_output_path": null,
+        "error_message": "Gitleaks is not installed or not found in PATH.",
+        "findings_count": 0
+      },
+      "syft": {
+        "status": "not_installed",
+        "returncode": null,
+        "raw_output_path": null,
+        "error_message": "Syft is not installed or not found in PATH.",
+        "artifact_count": 0
+      },
+      "trivy_fs": {
+        "status": "not_installed",
+        "returncode": null,
+        "raw_output_path": null,
+        "error_message": "Trivy is not installed or not found in PATH.",
+        "findings_count": 0
+      },
+      "trivy_image": {
+        "status": "not_installed",
+        "returncode": null,
+        "raw_output_path": null,
+        "error_message": "Trivy is not installed or not found in PATH.",
+        "findings_count": 0
+      }
+    },
+    "blocking_findings": [],
+    "warnings": [
+      "Scanner 'semgrep' did not complete successfully: Semgrep is not installed or not found in PATH.",
+      "Scanner 'gitleaks' did not complete successfully: Gitleaks is not installed or not found in PATH.",
+      "Scanner 'syft' did not complete successfully: Syft is not installed or not found in PATH.",
+      "Scanner 'trivy_fs' did not complete successfully: Trivy is not installed or not found in PATH.",
+      "Scanner 'trivy_image' did not complete successfully: Trivy is not installed or not found in PATH."
+    ],
+    "explanation": "Security gate failed closed: one or more required security scanners did not execute successfully. Deployment blocked.",
+    "security_score": null,
+    "score_details": {
+      "score": null,
+      "provisional_score": 100,
+      "status": "UNAVAILABLE_INCOMPLETE_SCAN",
+      "formula": "Base (100) - (Critical*25 + High*15 + Medium*5 + Low*1)",
+      "explanation": "Security score cannot be certified because one or more required scans were incomplete or failed."
+    }
+  },
+  "security_score": {
+    "score": null,
+    "provisional_score": 100,
+    "status": "UNAVAILABLE_INCOMPLETE_SCAN",
+    "formula": "Base (100) - (Critical*25 + High*15 + Medium*5 + Low*1)",
+    "explanation": "Security score cannot be certified because one or more required scans were incomplete or failed."
+  },
+  "scanner_statuses": {
+    "semgrep": {
+      "status": "not_installed",
+      "returncode": null,
+      "raw_output_path": null,
+      "error_message": "Semgrep is not installed or not found in PATH.",
+      "findings_count": 0
+    },
+    "gitleaks": {
+      "status": "not_installed",
+      "returncode": null,
+      "raw_output_path": null,
+      "error_message": "Gitleaks is not installed or not found in PATH.",
+      "findings_count": 0
+    },
+    "syft": {
+      "status": "not_installed",
+      "returncode": null,
+      "raw_output_path": null,
+      "error_message": "Syft is not installed or not found in PATH.",
+      "artifact_count": 0
+    },
+    "trivy_fs": {
+      "status": "not_installed",
+      "returncode": null,
+      "raw_output_path": null,
+      "error_message": "Trivy is not installed or not found in PATH.",
+      "findings_count": 0
+    },
+    "trivy_image": {
+      "status": "not_installed",
+      "returncode": null,
+      "raw_output_path": null,
+      "error_message": "Trivy is not installed or not found in PATH.",
+      "findings_count": 0
+    }
+  },
+  "total_findings": 0,
+  "severity_counts": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 0,
+    "LOW": 0,
+    "INFO": 0
+  },
+  "findings": [],
+  "sbom": {
+    "total_packages": 0,
+    "status": "not_found",
+    "packages": []
+  }
+}

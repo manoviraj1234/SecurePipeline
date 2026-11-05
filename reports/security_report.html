@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecurePipeline - CI/CD Security Report</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      margin: 0;
+      padding: 24px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .card-title {
+      font-size: 12px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .card-value {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      border-left: 4px solid #38bdf8;
+      padding-left: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    th {
+      background-color: #0f172a;
+      color: #94a3b8;
+      text-align: left;
+      font-size: 13px;
+      padding: 12px 10px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #334155;
+    }
+    .banner {
+      padding: 18px 24px;
+      border-radius: 8px;
+      border: 2px solid #f59e0b;
+      background-color: #78350f;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .doc-box {
+      background-color: #1e293b;
+      border-left: 4px solid #38bdf8;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: #cbd5e1;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1 style="margin:0;font-size:26px;color:#38bdf8;">SecurePipeline</h1>
+        <div style="color:#94a3b8;font-size:14px;margin-top:4px;">Automated CI/CD Vulnerability Detection &amp; Security Gate</div>
+      </div>
+      <div style="text-align:right;color:#94a3b8;font-size:13px;">
+        Scan Time: <span style="color:#f8fafc;font-weight:600;">2026-11-03T12:07:42.811273+00:00</span><br>
+        Target: <span style="font-family:monospace;color:#cbd5e1;">C:\Users\venna\.gemini\antigravity\scratch\securepipeline\sample_app</span>
+      </div>
+    </div>
+
+    <!-- Security Gate Banner -->
+    <div class="banner">
+      <div>INCOMPLETE – SECURITY SCANS INCOMPLETE OR FAILED (DEPLOYMENT BLOCKED)</div>
+      <div style="font-size:14px;font-weight:400;opacity:0.9;">
+        Policy: Block on Critical/High
+      </div>
+    </div>
+
+    <!-- KPI Metric Cards -->
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">Security Score</div>
+        <div class="card-value" style="color:#38bdf8;">N/A</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Total Findings</div>
+        <div class="card-value" style="color:#f8fafc;">0</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Critical</div>
+        <div class="card-value" style="color:#ef4444;">0</div>
+      </div>
+      <div class="card">
+        <div class="card-title">High</div>
+        <div class="card-value" style="color:#f97316;">0</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Medium</div>
+        <div class="card-value" style="color:#eab308;">0</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Low</div>
+        <div class="card-value" style="color:#10b981;">0</div>
+      </div>
+      <div class="card">
+        <div class="card-title">SBOM Packages</div>
+        <div class="card-value" style="color:#60a5fa;">0</div>
+      </div>
+    </div>
+
+    <!-- Security Gate Explanation -->
+    <div class="doc-box">
+      <strong>Gate Policy Decision:</strong> Security gate failed closed: one or more required security scanners did not execute successfully. Deployment blocked.<br>
+      <strong>Score Formula &amp; Auditability:</strong> Security score cannot be certified because one or more required scans were incomplete or failed.
+    </div>
+
+    <!-- Scanner Execution Status Section -->
+    <div class="section-title">Security Scanner Execution Health</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Scanner Tool</th>
+          <th>Execution Status</th>
+          <th>Diagnostics / Errors</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr style="border-bottom:1px solid #1f2937;">
+          <td style="padding:10px;font-weight:600;color:#f3f4f6;">semgrep</td>
+          <td style="padding:10px;"><span style="background:#7f1d1d;color:#f87171;padding:4px 8px;border-radius:4px;font-size:12px;font-weight:600;">NOT_INSTALLED</span></td>
+          <td style="padding:10px;color:#9ca3af;font-size:13px;">Semgrep is not installed or not found in PATH.</td>
+        </tr>
+        
+        <tr style="border-bottom:1px solid #1f2937;">
+          <td style="padding:10px;font-weight:600;color:#f3f4f6;">gitleaks</td>
+          <td style="padding:10px;"><span style="background:#7f1d1d;color:#f87171;padding:4px 8px;border-radius:4px;font-size:12px;font-weight:600;">NOT_INSTALLED</span></td>
+          <td style="padding:10px;color:#9ca3af;font-size:13px;">Gitleaks is not installed or not found in PATH.</td>
+        </tr>
+        
+        <tr style="border-bottom:1px solid #1f2937;">
+          <td style="padding:10px;font-weight:600;color:#f3f4f6;">syft</td>
+          <td style="padding:10px;"><span style="background:#7f1d1d;color:#f87171;padding:4px 8px;border-radius:4px;font-size:12px;font-weight:600;">NOT_INSTALLED</span></td>
+          <td style="padding:10px;color:#9ca3af;font-size:13px;">Syft is not installed or not found in PATH.</td>
+        </tr>
+        
+        <tr style="border-bottom:1px solid #1f2937;">
+          <td style="padding:10px;font-weight:600;color:#f3f4f6;">trivy_fs</td>
+          <td style="padding:10px;"><span style="background:#7f1d1d;color:#f87171;padding:4px 8px;border-radius:4px;font-size:12px;font-weight:600;">NOT_INSTALLED</span></td>
+          <td style="padding:10px;color:#9ca3af;font-size:13px;">Trivy is not installed or not found in PATH.</td>
+        </tr>
+        
+        <tr style="border-bottom:1px solid #1f2937;">
+          <td style="padding:10px;font-weight:600;color:#f3f4f6;">trivy_image</td>
+          <td style="padding:10px;"><span style="background:#7f1d1d;color:#f87171;padding:4px 8px;border-radius:4px;font-size:12px;font-weight:600;">NOT_INSTALLED</span></td>
+          <td style="padding:10px;color:#9ca3af;font-size:13px;">Trivy is not installed or not found in PATH.</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <!-- Vulnerabilities Table -->
+    <div class="section-title">Vulnerability Findings &amp; Remediation (0)</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Severity</th>
+          <th>Finding ID</th>
+          <th>Scanner</th>
+          <th>Location / Package</th>
+          <th>Description</th>
+          <th>Remediation</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td colspan="6" style="padding:24px;text-align:center;color:#9ca3af;font-style:italic;">
+            No vulnerability findings reported by successfully completed scanners.
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <!-- SBOM Summary Section -->
+    <div class="section-title">Software Bill of Materials (SBOM) Summary (0 Total Packages)</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Package Name</th>
+          <th>Version</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td colspan="3" style="padding:16px;text-align:center;color:#9ca3af;font-style:italic;">
+            No SBOM packages registered.
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <div style="text-align:center;color:#64748b;font-size:12px;margin-top:40px;border-top:1px solid #1e293b;padding-top:16px;">
+      SecurePipeline DevSecOps System • Automated CI/CD Vulnerability Detection Report
+    </div>
+  </div>
+</body>
+</html>

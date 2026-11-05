@@ -1,0 +1,47 @@
+{
+  "scan_metadata": {
+    "target_directory": "C:\\Users\\venna\\.gemini\\antigravity\\scratch\\SecurePipeline\\sample_app",
+    "start_time": "2026-11-03T19:17:37.426909+00:00",
+    "end_time": "2026-11-03T19:17:37.510984+00:00",
+    "docker_image": "sample-test-image:latest"
+  },
+  "scanner_statuses": {
+    "semgrep": {
+      "status": "not_installed",
+      "returncode": null,
+      "raw_output_path": null,
+      "error_message": "Semgrep is not installed or not found in PATH.",
+      "findings_count": 0
+    },
+    "gitleaks": {
+      "status": "not_installed",
+      "returncode": null,
+      "raw_output_path": null,
+      "error_message": "Gitleaks is not installed or not found in PATH.",
+      "findings_count": 0
+    },
+    "syft": {
+      "status": "not_installed",
+      "returncode": null,
+      "raw_output_path": null,
+      "error_message": "Syft is not installed or not found in PATH.",
+      "artifact_count": 0
+    },
+    "trivy_fs": {
+      "status": "not_installed",
+      "returncode": null,
+      "raw_output_path": null,
+      "error_message": "Trivy is not installed or not found in PATH.",
+      "findings_count": 0
+    },
+    "trivy_image": {
+      "status": "not_installed",
+      "returncode": null,
+      "raw_output_path": null,
+      "error_message": "Trivy is not installed or not found in PATH.",
+      "findings_count": 0
+    }
+  },
+  "total_raw_findings": 0,
+  "findings": []
+}

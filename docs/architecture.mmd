@@ -1,0 +1,31 @@
+# SecurePipeline Architecture Diagram
+
+```mermaid
+flowchart TD
+    subgraph CI[GitHub Actions CI]
+        A[Push / PR] --> B[Checkout]
+        B --> C[Install scanners]
+        C --> D[Run scanners in parallel]
+        D --> E[Aggregate results]
+        E --> F[Security Gate]
+        F -->|Pass| G[Continue to build]
+        F -->|Block| H[Fail job]
+        G --> I[Docker build]
+        I --> J[Trivy image scan]
+        J --> K[Upload final reports]
+    end
+
+    subgraph Backend[FastAPI Backend]
+        L[POST /api/reports] --> M[Store in SQLite]
+        M --> N[GET /api/dashboard/summary]
+        M --> O[GET /api/vulnerabilities]
+    end
+
+    subgraph Frontend[React Dashboard]
+        P[Axios calls] --> N
+        P --> O
+    end
+
+    H -.-> L
+    K --> L
+```
